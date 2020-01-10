@@ -59,9 +59,6 @@
                                         <textarea name="alamat" id="alamat" class="form-control form-control-sm" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <textarea name="alamat_lengkap" id="alamat_lengkap" class="form-control form-control-sm" rows="3" style="display: none"></textarea>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="rt">RT <span class="text-danger">*</span></label>
                                         <input class='form-control form-control-sm' type="text" name="rt" id="rt" autocomplete="off" autocorrect="off" autocapitalize="off">
                                     </div>
@@ -313,6 +310,8 @@
                                     <p class="judul"><i>"Dan janganlah sebagian kamu memakan harta sebagian yang lain di antara kamu dengan cara yang bathil dan janganlah kamu membawa urusan harta kepada hakim supaya kamu dapat memakan sebagian harta benda orang lain dengan jalan berbuat dosa, padahal kamu mengetahui"<br>
                                     </i>(Al-Baqoroh 2 : 188)</p>
 
+                                    <input type="checkbox" name="setuju" id="setuju" class="mr-1"><label for="setuju">Dengan ini setuju</label>
+
                                     <div class="d-flex justify-content-between">
                                         <button type="button" class="btn btn-sm btn-success" id="prev-1"><i class="fa fa-arrow-left"></i> Data Akad</button>
                                         <input type="submit" value="Buat Akad" class="btn btn-sm btn-primary float-right" id="simpan">
@@ -397,8 +396,6 @@
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
 
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#rt").keyup(function(){
@@ -412,8 +409,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#rw").keyup(function(){
@@ -427,8 +422,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#kel").keyup(function(){
@@ -442,8 +435,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
         
         $("input[type=radio][name=kel_desa]").change(function(){
@@ -457,8 +448,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#kec").keyup(function(){
@@ -472,8 +461,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#kab_kota").keyup(function(){
@@ -487,8 +474,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#prov").keyup(function(){
@@ -502,8 +487,6 @@
             var prov = $("#prov").val();
             var alamatLengkap = alamat + ' RT. ' + rt + ' / RW. ' + rw + ', ' + kel_desa + ' ' + kel + ', Kec. ' + kec + ', ' + kab_kota + ' Provinsi ' + prov;
             $("#alamatAkad").html(alamatLengkap);
-            
-            $("#alamat_lengkap").val(alamatLengkap);
         })
 
         $("#next-1").click(function(){
@@ -517,5 +500,20 @@
                 $("#form-1").hide();
                 $("#form-2").show();
             // }
+        })
+
+        $("#simpan").click(function(){
+            var check =  $('input[name="setuju"]:checked').length;
+
+            if(check > 0){
+                var c = confirm("Apakah Anda yakin akan membuat akad?")
+                return c;
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Harap menyetujui terlebih dahulu dengan menceklist'
+                })
+                return false;
+            }
         })
     </script>

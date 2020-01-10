@@ -172,7 +172,7 @@
     
     <div class="judul"><center><b>Pasal 8<br>JANGKA WAKTU SYIRKAH</b></center></div>
     <ol style="padding: 0px; padding-left: 20px;">
-        <li>PARA PIHAK telah menyepakati jangka waktu Syirkah Inan berlaku sejak ditandatanganinya akad syirkah yaitu tanggal <b>.... Agustus 2019</b> sampai dengan memutuskan semua syarik untuk berakhir.</li>
+        <li>PARA PIHAK telah menyepakati jangka waktu Syirkah Inan berlaku sejak ditandatanganinya akad syirkah yaitu tanggal <b><?= tgl_indo($akad['tgl_akad'])?></b> sampai dengan memutuskan semua syarik untuk berakhir.</li>
         <li>Pada saat berakhirnya jangka waktu akad syirkah ini dimungkinkan untuk:</li>
         <ol type="a" style="padding: 0px; padding-left: 20px;">
             <li>Dilakukan peninjauan ulang terhadap klausul-klausul akad Syirkah ’Inan ini baik secara total atau sebagian untuk kemudian Syirkah 'Inan ini bisa dilanjutkan kembali baik tanpa atau disertai perubahan isi akad. </li>

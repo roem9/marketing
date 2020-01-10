@@ -131,11 +131,22 @@ class Agency_model extends CI_MODEL{
     }
 
     public function insertAkad($id_agency, $foto){
+        $alamat = ucwords($this->input->post("alamat", true));
+        $rt = ucwords($this->input->post("rt", true));
+        $rw = ucwords($this->input->post("rw", true));
+        $kel_desa = $this->input->post("kel_desa", true);
+        $kel = ucwords($this->input->post("kel", true));
+        $kec = ucwords($this->input->post("kec", true));
+        $kab_kota = ucwords($this->input->post("kab_kota", true));
+        $prov = ucwords($this->input->post("prov", true));
+
+        $alamat_lengkap = $alamat . ' RT. ' . $rt . ' / RW. ' . $rw . ', ' . $kel_desa . ' ' . $kel . ', Kec. ' . $kec . ', ' . $kab_kota . ' Provinsi ' . $prov;
+
         $data['akad'] = [
             "nama" => $this->input->post("nama", TRUE),
             "nama_agency" => $this->input->post("nama_agency", TRUE),
             "no_ktp" => $this->input->post("no_ktp", TRUE),
-            "alamat" => $this->input->post("alamat_lengkap"),
+            "alamat" => $alamat_lengkap,
             "no_hp" => $this->input->post("no_hp", TRUE),
             "tgl_akad" => $this->input->post("tgl_bergabung", TRUE),
             "id_agency" => $this->input->post("id_agency", TRUE)
@@ -144,7 +155,7 @@ class Agency_model extends CI_MODEL{
         $this->db->insert("akad", $data['akad']);
 
         $data['agency'] = [
-            "alamat" => $this->input->post("alamat_lengkap", TRUE),
+            "alamat" => $alamat_lengkap,
             "tgl_masuk" => $this->input->post("tgl_bergabung", TRUE),
             "akad" => "on",
             "ktp" => $foto

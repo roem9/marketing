@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     </div>
-                    <?php if($agency['akad'] == 'off') :?>
+                    <?php if($agency['akad'] == 'tidak tersedia') :?>
                         <div class="card-body">
                             <form action="<?= base_url()?>agency/buatakad" method="POST" enctype="multipart/form-data">
                                 <div id="form-1">

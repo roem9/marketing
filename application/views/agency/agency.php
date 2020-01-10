@@ -74,7 +74,7 @@
                                   <td><?= ++$no?></td>
                                   <td><?= $agency['status']?></td>
                                   <td><?= $agency['nama_agency']?></td>
-                                  <td><center><i class="fa fa-link text-primary"></i></center></td>
+                                  <td><center><a href="#" class="modalLink" data-toggle="modal" data-target="#modalLink" data-id="<?= $agency['id_agency']?>"><i class="fa fa-link text-primary"></i></a></center></td>
                                   <!-- <td><?= base_url()?>agency/akad/<?=$agency['id_agency'] . "/" . rawurlencode($agency['nama_agency'])?></td> -->
                                   <td style="text-align:center">
                                     <?php if($agency['akad'] == 'tersedia'):?>
@@ -128,6 +128,21 @@
               $("#an_rek").val(data.an_rek);
               $("#npwp").val(data.npwp);
               $("#id_agency").val(data.id_agency);
+            }
+        })
+      })
+
+      $(".modalLink").click(function(){
+        const id = $(this).data('id');
+        // console.log(id)
+        $.ajax({
+            url : "<?=base_url()?>agency/getagencybyid",
+            method : "POST",
+            data : {id_agency : id},
+            async : true,
+            dataType : 'json',
+            success : function(data){
+              $("#link_akad").val('<?= base_url()?>agency/akad/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
             }
         })
       })

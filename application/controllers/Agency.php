@@ -42,44 +42,50 @@ class Agency extends CI_CONTROLLER{
         if($this->input->post("hapus")){
             foreach ($_POST['id_agency'] as $id_agency) {
 
-                // $cek_email = $this->Agency_model->getAgencyById($id_agency);;
-                // $email = $cek_email['email'];
-                // $nama_agency = $cek_email['nama_agency'];
+                $cek_email = $this->Agency_model->getAgencyById($id_agency);;
+                $email = $cek_email['email'];
+                $nama_agency = $cek_email['nama_agency'];
 
-                // $from = $this->config->item('smtp_user');
-                // $to = $email;
-                // $subject = 'cek';
-                // $message = base_url() . 'agency/akad/';
+                // var_dump($email);
+                $from = $this->config->item('smtp_user');
+                $to = $email;
+                $subject = 'cek';
+                $message = 'ditolak boy';
     
-                // $this->email->set_newline("\r\n");
-                // $this->email->from($from);
-                // $this->email->to($to);
-                // $this->email->subject($subject);
-                // $this->email->message($message);
+                $this->email->set_newline("\r\n");
+                $this->email->from($from);
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
                 
-                $this->Agency_model->hapusAgency($id_agency);
+                if ($this->email->send()) {
+                    $this->Agency_model->hapusAgency($id_agency);
+                }
             }
             $this->session->set_flashdata('agency', 'Berhasil menghapus ' . $num . ' agency');
 
         } else {
             foreach ($_POST['id_agency'] as $id_agency) {
                 
-                // $cek_email = $this->Agency_model->getAgencyById($id_agency);;
-                // $email = $cek_email['email'];
-                // $nama_agency = $cek_email['nama_agency'];
+                $cek_email = $this->Agency_model->getAgencyById($id_agency);;
+                $email = $cek_email['email'];
+                $nama_agency = $cek_email['nama_agency'];
 
-                // $from = $this->config->item('smtp_user');
-                // $to = $email;
-                // $subject = 'cek';
-                // $message = base_url() . 'agency/akad/' .$id_agency. '/' . $nama_agency;
+                $from = $this->config->item('smtp_user');
+                $to = $email;
+                $subject = 'cek';
+                $message = "diterima cuy";
     
-                // $this->email->set_newline("\r\n");
-                // $this->email->from($from);
-                // $this->email->to($to);
-                // $this->email->subject($subject);
-                // $this->email->message($message);
+                $this->email->set_newline("\r\n");
+                $this->email->from($from);
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
 
-                $this->Agency_model->konfirmAgency($id_agency);
+                if ($this->email->send()) {
+                    $this->Agency_model->konfirmAgency($id_agency);
+                }
+
             }
             $this->session->set_flashdata('agency', 'Berhasil mengkonfirmasi ' . $num . ' agency');
         }
@@ -99,8 +105,11 @@ class Agency extends CI_CONTROLLER{
         $email = $this->input->post("email", true);
         $hp = $this->input->post("no_wa", true);
 
-        $cek_email = $this->Agency_model->cekEmail($email);
-        $cek_hp = $this->Agency_model->cekHp($hp);
+        $cek_email = 0;
+        $cek_hp = 0;
+
+        // $cek_email = $this->Agency_model->cekEmail($email);
+        // $cek_hp = $this->Agency_model->cekHp($hp);
 
         if($cek_email == 0 && $cek_hp == 0){
             $this->load->config('email');

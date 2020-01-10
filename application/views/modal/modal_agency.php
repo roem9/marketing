@@ -1,20 +1,21 @@
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Detail Kelas</h5>
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="exampleModalScrollableTitle">Detail Kelas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
         <div class="modal-body">
             <form action="<?= base_url()?>agency/editagency" method="post">
-                <div class="form-group">
+                <div class="form-group" id="statusAgency">
                     <label for="status">Status</label>
                     <select name="status" id="status" class="form-control form-control-sm" required>
                         <option value="">Pilih Status</option>
                         <option value="aktif">Aktif</option>
                         <option value="nonaktif">Nonaktif</option>
+                        <option value="konfirm">Konfirmasi</option>
                     </select>
                 </div>
                 <input type="hidden" name="id_agency" id="id_agency">

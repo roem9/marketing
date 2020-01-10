@@ -105,11 +105,8 @@ class Agency extends CI_CONTROLLER{
         $email = $this->input->post("email", true);
         $hp = $this->input->post("no_wa", true);
 
-        $cek_email = 0;
-        $cek_hp = 0;
-
-        // $cek_email = $this->Agency_model->cekEmail($email);
-        // $cek_hp = $this->Agency_model->cekHp($hp);
+        $cek_email = $this->Agency_model->cekEmail($email);
+        $cek_hp = $this->Agency_model->cekHp($hp);
 
         if($cek_email == 0 && $cek_hp == 0){
             $this->load->config('email');

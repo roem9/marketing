@@ -29,7 +29,7 @@
           </div>
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4" style="width: 900px">
+          <div class="card shadow mb-4" style="width: 700px">
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
@@ -54,15 +54,17 @@
                         <th>No</th>
                         <th>Status</th>
                         <th>Nama Agency</th>
+                        <th><center>Link</center></th>
                         <th><center>Akad</center></th>
-                        <th>detail</th>
+                        <th>Detail</th>
                     </thead>
                     <tfoot>
                         <th>No</th>
                         <th>Status</th>
                         <th>Nama Agency</th>
+                        <th><center>Link</center></th>
                         <th><center>Akad</center></th>
-                        <th>detail</th>
+                        <th>Detail</th>
                     </tfoot>
                     <tbody>
                         <?php 
@@ -72,7 +74,15 @@
                                   <td><?= ++$no?></td>
                                   <td><?= $agency['status']?></td>
                                   <td><?= $agency['nama_agency']?></td>
-                                  <td><?= base_url()?>agency/akad/<?=$agency['id_agency'] . "/" . rawurlencode($agency['nama_agency'])?></td>
+                                  <td><center><i class="fa fa-link text-primary"></i></center></td>
+                                  <!-- <td><?= base_url()?>agency/akad/<?=$agency['id_agency'] . "/" . rawurlencode($agency['nama_agency'])?></td> -->
+                                  <td style="text-align:center">
+                                    <?php if($agency['akad'] == 'tersedia'):?>
+                                      <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download text-primary"></i></a>
+                                    <?php else : ?>
+                                      -
+                                    <?php endif;?>
+                                  </td>
                                   <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td>
                                 </tr>
                         <?php endforeach;?>

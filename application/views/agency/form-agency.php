@@ -60,6 +60,10 @@
                                 <input type="text" maxlength=13 name="no_wa" id="no_wa" class="form-control form-control-sm" autocomplete="off" autocorrect="off" autocapitalize="off">
                             </div>
                             <div class="form-group">
+                                <label for="no_hp">No Hp <span class="text-danger">*</span></label>
+                                <input type="text" maxlength=13 name="no_hp" id="no_hp" class="form-control form-control-sm" autocomplete="off" autocorrect="off" autocapitalize="off">
+                            </div>
+                            <div class="form-group">
                                 <label for="no_rek">No Rekening <span class="text-danger">*</span></label>
                                 <input type="text" maxlength=20 name="no_rek" id="no_rek" class="form-control form-control-sm" autocomplete="off" autocorrect="off" autocapitalize="off">
                             </div>

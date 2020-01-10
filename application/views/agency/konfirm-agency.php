@@ -104,6 +104,10 @@
     <!-- End of Content Wrapper -->
 
     <script>
+      // $("#statusAgency").hide();
+      $("#status option[value='aktif']").remove();
+      $("#status option[value='nonaktif']").remove();
+
       $("#sidebarAgency").addClass("active");
 
       $(".modalAgency").click(function(){
@@ -132,7 +136,7 @@
               $("#kab_kota").val(data.kab_kota);
               $("#tgl_masuk").val(data.tgl_masuk);
               $("#no_rek").val(data.no_rek);
-              $("#nama_bank").val(data.nama_bank);
+              $("#nama_bank").val(data.bank);
               $("#an_rek").val(data.an_rek);
               $("#npwp").val(data.npwp);
             }

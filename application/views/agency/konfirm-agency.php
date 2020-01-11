@@ -17,7 +17,19 @@
                   <div class="row">
                       <div class="col-12">
                           <div class="alert alert-success alert-dismissible fade show" role="alert">
-                              <?= $this->session->flashdata('agency');?>
+                              Data agency <strong>berhasil</strong> <?= $this->session->flashdata('agency');?>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              <?php endif; ?>
+              <?php if( $this->session->flashdata('konfirm') ) : ?>
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                              <?= $this->session->flashdata('konfirm');?>
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
@@ -126,19 +138,13 @@
               $("#email").val(data.email);
               $("#no_wa").val(data.no_wa);
               $("#no_hp").val(data.no_hp);
-              $("#t4_lahir").val(data.t4_lahir);
-              $("#tgl_lahir").val(data.tgl_lahir);
               $("#alamat").val(data.alamat);
-              $("#rt").val(data.rt);
-              $("#rw").val(data.rw);
-              $("#kel").val(data.kel);
-              $("#kec").val(data.kec);
-              $("#kab_kota").val(data.kab_kota);
               $("#tgl_masuk").val(data.tgl_masuk);
               $("#no_rek").val(data.no_rek);
               $("#nama_bank").val(data.bank);
               $("#an_rek").val(data.an_rek);
               $("#npwp").val(data.npwp);
+              $("#id_agency").val(data.id_agency);
             }
         })
       })

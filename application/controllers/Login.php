@@ -18,27 +18,34 @@ class Login extends CI_CONTROLLER{
         $username = $this->input->post('username', TRUE);
 		$password = $this->input->post('password', TRUE);
 		$where = array(
-			'id_admin' => $username,
-            'password' => $password,
-            'level' => 'akademik'
-			);
-		$cek = $this->Login_model->cekLogin("admin",$where)->num_rows();
+			'username' => $username,
+            'password' => $password
+        );
+
+        $admin = $this->Login_model->cekLogin("admin", $where);
+        $cek = COUNT($admin);
+
 		if($cek > 0){
- 
+            
+            $level = $admin['level'];
+
 			$data_session = array(
-				'id' => $username,
+				'level' => $level,
 				'status' => "login"
-				);
+            );
  
 			$this->session->set_userdata($data_session);
- 
-			redirect(base_url("home"));
+            
+            if($level == 'super'){
+                redirect(base_url("agency/batch/3"));
+            } else {
+                echo "cek";
+            }
  
 		}else{
             $this->session->set_flashdata('login', 'Maaf, kombinasi username dan password salah');
 			redirect(base_url("login"));
 		}
-
     }
 
     function logout(){

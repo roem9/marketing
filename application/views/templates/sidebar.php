@@ -29,7 +29,7 @@
       </li>
 
       <li class="nav-item" id="Peserta">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<?= base_url()?>login/logout">
           <i class="fas fa-fw fa-sign-out-alt"></i>
           <span>Keluar</span></a>
       </li>

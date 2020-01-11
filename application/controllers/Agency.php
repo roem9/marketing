@@ -3,6 +3,11 @@ class Agency extends CI_CONTROLLER{
     public function __construct(){
         parent::__construct();
         $this->load->model("Agency_model");
+        
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+		}
     }
 
     public function batch($batch){
@@ -63,7 +68,7 @@ class Agency extends CI_CONTROLLER{
                     $this->Agency_model->hapusAgency($id_agency);
                 }
             }
-            $this->session->set_flashdata('agency', 'Berhasil menghapus ' . $num . ' agency');
+            $this->session->set_flashdata('konfirm', 'Berhasil menghapus ' . $num . ' agency');
 
         } else {
             foreach ($_POST['id_agency'] as $id_agency) {
@@ -88,7 +93,7 @@ class Agency extends CI_CONTROLLER{
                 }
 
             }
-            $this->session->set_flashdata('agency', 'Berhasil mengkonfirmasi ' . $num . ' agency');
+            $this->session->set_flashdata('konfirm', 'Berhasil mengkonfirmasi ' . $num . ' agency');
         }
         redirect($_SERVER['HTTP_REFERER']);
     }

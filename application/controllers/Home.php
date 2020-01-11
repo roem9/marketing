@@ -10,14 +10,14 @@ class Home extends CI_CONTROLLER{
 		}
     }
 
-    public function index(){
-        $data['header'] = 'Home';
-        $data['title'] = 'Home';
-        $data['program'] = $this->Home_model->getProgram();
+    // public function index(){
+    //     $data['header'] = 'Home';
+    //     $data['title'] = 'Home';
+    //     $data['program'] = $this->Home_model->getProgram();
 
-        $this->load->view("templates/header", $data);
-        $this->load->view("templates/sidebar");
-        $this->load->view("home/index", $data);
-        $this->load->view("templates/footer");
-    }
+    //     $this->load->view("templates/header", $data);
+    //     $this->load->view("templates/sidebar");
+    //     $this->load->view("home/index", $data);
+    //     $this->load->view("templates/footer");
+    // }
 }

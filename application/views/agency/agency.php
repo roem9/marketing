@@ -103,6 +103,7 @@
     <!-- End of Content Wrapper -->
 
     <script>
+      $("#status option[value='konfirm']").remove();
       $("#sidebarAgency").addClass("active");
 
       $(".modalAgency").click(function(){
@@ -143,6 +144,7 @@
             dataType : 'json',
             success : function(data){
               $("#link_akad").val('<?= base_url()?>agency/akad/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
+              $("#namaAgency").html(data.nama_agency);
             }
         })
       })

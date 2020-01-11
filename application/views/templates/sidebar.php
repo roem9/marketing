@@ -16,8 +16,8 @@
           <span>Marketing</span></a>
       </li>
       
-      <li class="nav-item" id="lac">
-        <a class="nav-link" href="#">
+      <li class="nav-item" id="sidebarLac">
+        <a class="nav-link" href="<?= base_url()?>lac/listlac">
         <i class="fas fa-fw fa-user"></i>
         <span>LAC</span></a>
       </li>

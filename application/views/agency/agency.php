@@ -75,7 +75,6 @@
                                   <td><?= $agency['status']?></td>
                                   <td><?= $agency['nama_agency']?></td>
                                   <td><center><a href="#" class="modalLink" data-toggle="modal" data-target="#modalLink" data-id="<?= $agency['id_agency']?>"><i class="fa fa-link text-primary"></i></a></center></td>
-                                  <!-- <td><?= base_url()?>agency/akad/<?=$agency['id_agency'] . "/" . rawurlencode($agency['nama_agency'])?></td> -->
                                   <td style="text-align:center">
                                     <?php if($agency['akad'] == 'tersedia'):?>
                                       <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download text-primary"></i></a>

@@ -76,7 +76,7 @@
                                     <td><?= $lac['nama_lac']?></td>
                                     <td><center><?= $lac['aktif']?>
                                     <td><center><?= $lac['nonaktif']?></center></td>
-                                    <td><center><span class="badge badge-info"><?= $lac['marketing']?></span></center></center></td>
+                                    <td><center><?= $lac['marketing']?></center></td>
                                     <td><center><a href="#" class="badge badge-warning modalLac" data-toggle="modal" data-target="#modalLac" data-id="<?= $lac['id_lac']?>">detail</a></center></td>
                                 </tr>
                             <?php endforeach;?>

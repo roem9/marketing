@@ -29,7 +29,7 @@
           </div>
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4" style="width: 700px">
+          <div class="card shadow mb-4" style="width: 800px">
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
@@ -48,47 +48,45 @@
               </ul>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table id="dataTable" class="table table-sm fo-13">
-                    <thead>
-                        <th>No</th>
-                        <th>Status</th>
-                        <th>Nama Agency</th>
-                        <th><center>Link</center></th>
-                        <th><center>Akad</center></th>
-                        <th>Detail</th>
-                    </thead>
-                    <tfoot>
-                        <th>No</th>
-                        <th>Status</th>
-                        <th>Nama Agency</th>
-                        <th><center>Link</center></th>
-                        <th><center>Akad</center></th>
-                        <th>Detail</th>
-                    </tfoot>
-                    <tbody>
-                        <?php 
-                            $no = 0;
-                            foreach ($agency as $agency) :?>
-                                <tr>
-                                  <td><?= ++$no?></td>
-                                  <td><?= $agency['status']?></td>
-                                  <td><?= $agency['nama_agency']?></td>
-                                  <td><center><a href="#" class="modalLink" data-toggle="modal" data-target="#modalLink" data-id="<?= $agency['id_agency']?>"><i class="fa fa-link text-primary"></i></a></center></td>
-                                  <td style="text-align:center">
-                                    <?php if($agency['akad'] == 'tersedia'):?>
-                                      <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download text-primary"></i></a>
-                                    <?php else : ?>
-                                      -
-                                    <?php endif;?>
-                                  </td>
-                                  <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td>
-                                </tr>
-                        <?php endforeach;?>
-                    </tbody>
-                </table>
-
-              </div>
+              <table id="dataTable" class="table table-sm fo-13">
+                  <thead>
+                    <tr>
+                      <th rowspan=2>No</th>
+                      <th rowspan=2>Status</th>
+                      <th rowspan=2>Nama Agency</th>
+                      <th rowspan=2><center>Akad</center></th>
+                      <th colspan=3><center>Marketing</center></th>
+                      <th rowspan=2>Detail</th>
+                    </tr>
+                    <tr>
+                        <th>Aktif</th>
+                        <th>Nonaktif</th>
+                        <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php 
+                          $no = 0;
+                          foreach ($agency as $agency) :?>
+                              <tr>
+                                <td><?= ++$no?></td>
+                                <td><?= $agency['status']?></td>
+                                <td><?= $agency['nama_agency']?></td>
+                                <td style="text-align:center">
+                                  <?php if($agency['akad'] == 'tersedia'):?>
+                                    <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download text-primary"></i></a>
+                                  <?php else : ?>
+                                    -
+                                  <?php endif;?>
+                                </td>
+                                <td><center><?= $agency['aktif']?></center></td>
+                                <td><center><?= $agency['nonaktif']?></center></td>
+                                <td><center><?= $agency['marketing']?></center></td>
+                                <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td>
+                              </tr>
+                      <?php endforeach;?>
+                  </tbody>
+              </table>
             </div>
           </div>
 
@@ -104,6 +102,11 @@
     <script>
       $("#status option[value='konfirm']").remove();
       $("#sidebarAgency").addClass("active");
+      $("#btn-form-1").addClass("active")
+      $("#form-2").hide();
+      $("#form-3").hide();
+      $("#form-4").hide();
+
 
       $(".modalAgency").click(function(){
         const id = $(this).data('id');
@@ -115,6 +118,7 @@
             async : true,
             dataType : 'json',
             success : function(data){
+              $("#link_akad").val('<?= base_url()?>agency/akad/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
               $("#status").val(data.status);
               $("#nama_agency").val(data.nama_agency);
               $("#nama_pemilik").val(data.nama_pemilik);
@@ -130,6 +134,56 @@
               $("#id_agency").val(data.id_agency);
             }
         })
+        
+        $.ajax({
+            url : "<?=base_url()?>agency/getmarketingaktif",
+            method : "POST",
+            data : {id_agency : id},
+            async : true,
+            dataType : 'json',
+            success : function(data){
+                $("#pesan-aktif").show();
+                $("#form-aktif").show();
+
+                if(data.length > 0){
+                    $("#pesan-aktif").hide();
+                } else {
+                    $("#form-aktif").hide();
+                }
+
+                $('#jumlah-marketing-aktif').html(data.length);
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    html += '<li class="list-group-item"><input type="checkbox" name="id_marketing[]" class="mr-1" value="' + data[i].kd_marketing + '" id="' + i + '"><label for="' + i + '">' + data[i].nama_marketing + '</label></li>';
+                }
+                $('#list-marketing-aktif').html(html);
+            }
+        })
+
+        $.ajax({
+            url : "<?=base_url()?>agency/getmarketingnonaktif",
+            method : "POST",
+            data : {id_agency : id},
+            async : true,
+            dataType : 'json',
+            success : function(data){
+                $("#pesan-nonaktif").show();
+
+                if(data.length > 0){
+                    $("#pesan-nonaktif").hide();
+                }
+
+                $('#jumlah-marketing-nonaktif').html(data.length);
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    html += '<li class="list-group-item"> ' + data[i].nama_marketing + '</li>';
+                }
+                $('#list-marketing-nonaktif').html(html);
+            }
+        })
+
       })
 
       $(".modalLink").click(function(){
@@ -147,4 +201,58 @@
             }
         })
       })
+
+      $("#btn-form-1").click(function(){
+        $("#btn-form-1").addClass("active")
+        $("#btn-form-2").removeClass("active")
+        $("#btn-form-3").removeClass("active")
+        $("#btn-form-4").removeClass("active")
+
+        $("#form-1").show();
+        $("#form-2").hide();
+        $("#form-3").hide();
+        $("#form-4").hide();
+    })
+    
+    $("#btn-form-2").click(function(){
+        $("#btn-form-1").removeClass("active")
+        $("#btn-form-2").addClass("active")
+        $("#btn-form-3").removeClass("active")
+        $("#btn-form-4").removeClass("active")
+
+        $("#form-1").hide();
+        $("#form-2").show();
+        $("#form-3").hide();
+        $("#form-4").hide();
+    })
+    
+    $("#btn-form-3").click(function(){
+        $("#btn-form-1").removeClass("active")
+        $("#btn-form-2").removeClass("active")
+        $("#btn-form-3").addClass("active")
+        $("#btn-form-4").removeClass("active")
+
+        $("#form-1").hide();
+        $("#form-2").hide();
+        $("#form-3").show();
+        $("#form-4").hide();
+    })
+    
+    $("#btn-form-4").click(function(){
+        $("#btn-form-1").removeClass("active")
+        $("#btn-form-2").removeClass("active")
+        $("#btn-form-3").removeClass("active")
+        $("#btn-form-4").addClass("active")
+
+        $("#form-1").hide();
+        $("#form-2").hide();
+        $("#form-3").hide();
+        $("#form-4").show();
+    })  
+
+    $("#simpanAgency").click(function(){
+      var c = confirm("Yakin akan mengubah data agency?")
+      return c;
+    })
+
     </script>

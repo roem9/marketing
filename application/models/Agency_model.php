@@ -1,6 +1,26 @@
 <?php
 
 class Agency_model extends CI_MODEL{
+    public function getAllMarketing($id_agency){
+        $this->db->from("marketing_agency");
+        $this->db->where("id_agency", $id_agency);
+        return $this->db->get()->result_array();
+    }
+
+    public function getMarketingAktif($id_agency){
+        $this->db->from("marketing_agency");
+        $this->db->where("id_agency", $id_agency);
+        $this->db->where("status", 'aktif');
+        return $this->db->get()->result_array();
+    }
+
+    public function getMarketingNonaktif($id_agency){
+        $this->db->from("marketing_agency");
+        $this->db->where("id_agency", $id_agency);
+        $this->db->where("status", 'nonaktif');
+        return $this->db->get()->result_array();
+    }
+
     public function getAllAgencyByBatch($batch){
         $this->db->select("*");
         $this->db->from("agency");

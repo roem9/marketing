@@ -13,7 +13,15 @@ class Agency extends CI_CONTROLLER{
     public function batch($batch){
         $data['header'] = 'List Agency Batch ' . $batch;
         $data['title'] = 'List Agency Batch ' . $batch;
-        $data['agency'] = $this->Agency_model->getAllAgencyByBatch($batch);
+        $agency = $this->Agency_model->getAllAgencyByBatch($batch);
+        $data['agency'] = [];
+
+        foreach ($agency as $key => $agency) {
+            $data['agency'][$key] = $agency;
+            $data['agency'][$key]['marketing'] = COUNT($this->Agency_model->getAllMarketing($agency['id_agency']));
+            $data['agency'][$key]['aktif'] = COUNT($this->Agency_model->getMarketingAktif($agency['id_agency']));
+            $data['agency'][$key]['nonaktif'] = COUNT($this->Agency_model->getMarketingNonaktif($agency['id_agency']));
+        }
         $data['batch'] = $batch;
 
         $this->load->view('templates/header', $data);
@@ -197,5 +205,18 @@ class Agency extends CI_CONTROLLER{
 		$data = $this->load->view('agency/akad', $akad, TRUE);
 		$mpdf->WriteHTML($data);
 		$mpdf->Output();
+    }
+    
+
+    public function getMarketingAktif(){
+        $id_agency = $_POST['id_agency'];
+        $agency = $this->Agency_model->getMarketingAktif($id_agency);
+        echo json_encode($agency);
+    }
+
+    public function getMarketingNonaktif(){
+        $id_agency = $_POST['id_agency'];
+        $agency = $this->Agency_model->getMarketingNonaktif($id_agency);
+        echo json_encode($agency);
     }
 }

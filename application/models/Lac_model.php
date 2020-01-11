@@ -52,4 +52,13 @@ class Lac_model extends CI_MODEL{
             $this->db->update("marketing_si", ["id_lac" => $id_lac]);
         }
     }
+
+    public function tambahLac(){
+        $data = [
+            "nama_lac" => $this->input->post("nama", true),
+            "status" => "aktif"
+        ];
+
+        $this->db->insert("lac", $data);
+    }
 }

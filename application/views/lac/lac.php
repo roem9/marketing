@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a href="lac.php" class="nav-link active">LAC</a>
                     </li>
-                        <a href="modal/tambahlac.php" rel="modal:open" class="nav-link btn btn-success btn-sm">Tambah LAC</a>
+                        <a href="#" data-toggle="modal" data-target="#modal_add_lac" class="nav-link btn btn-success btn-sm">Tambah LAC</a>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -215,6 +215,11 @@
 
     $("#updateModal").click(function(){
         var c = confirm("Apakah Anda yakin akan mengupdate data LAC?");
+        return c;
+    })
+
+    $("#tambahLac").click(function(){
+        var c = confirm("Apakah Anda yakin akan menambah LAC?");
         return c;
     })
 

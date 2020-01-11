@@ -21,6 +21,7 @@ class Lac extends CI_CONTROLLER{
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
+        $this->load->view('modal/modal_add_lac');
         $this->load->view('modal/modal_lac', $data);
         $this->load->view('lac/lac', $data);
         $this->load->view('templates/footer');
@@ -57,5 +58,11 @@ class Lac extends CI_CONTROLLER{
         $this->session->set_flashdata('marketing', 'Berhasil memindahkan marketing');
         redirect($_SERVER['HTTP_REFERER']);
 
+    }
+
+    public function tambahLac(){
+        $this->Lac_model->tambahLac();
+        $this->session->set_flashdata('lac', 'ditambahkan');
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }

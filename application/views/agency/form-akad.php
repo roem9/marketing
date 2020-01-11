@@ -490,16 +490,16 @@
         })
 
         $("#next-1").click(function(){
-            // if($("#tgl_bergabung").val() == '' || $("#no_ktp").val() == '' || $("#alamat").val() == '' || $("#rt").val() == '' || $("#rw").val() == '' || $("#kel_desa").val() == '' || $("#kel").val() == '' || $("#kec").val() == '' || $("#kab_kota").val() == '' || $("#prov").val() == '' || $("#ktp").val() == ''){
-            //     Swal.fire({
-            //         icon: 'error',
-            //         text: 'Harap mengisi yang bertanda *'
-            //     })
-            //     return false;
-            // } else {
+            if($("#tgl_bergabung").val() == '' || $("#no_ktp").val() == '' || $("#alamat").val() == '' || $("#rt").val() == '' || $("#rw").val() == '' || $("#kel_desa").val() == '' || $("#kel").val() == '' || $("#kec").val() == '' || $("#kab_kota").val() == '' || $("#prov").val() == '' || $("#ktp").val() == ''){
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Harap mengisi yang bertanda *'
+                })
+                return false;
+            } else {
                 $("#form-1").hide();
                 $("#form-2").show();
-            // }
+            }
         })
 
         $("#simpan").click(function(){

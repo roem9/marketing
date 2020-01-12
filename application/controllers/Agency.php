@@ -3,14 +3,14 @@ class Agency extends CI_CONTROLLER{
     public function __construct(){
         parent::__construct();
         $this->load->model("Agency_model");
-        
-        if($this->session->userdata('level') != "super"){
-            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
-			redirect(base_url("login"));
-		}
     }
 
     public function batch($batch){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+        }
+        
         $data['header'] = 'List Agency Batch ' . $batch;
         $data['title'] = 'List Agency Batch ' . $batch;
         $agency = $this->Agency_model->getAllAgencyByBatch($batch);
@@ -34,6 +34,11 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function konfirmasi(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+        }
+        
         $data['header'] = 'List Agency Konfirmasi';
         $data['title'] = 'List Agency Konfirmasi';
         $data['agency'] = $this->Agency_model->getAllAgencyKonfirm();
@@ -48,10 +53,16 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function konfirm(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+        }
+        
         $num = count($_POST['id_agency']);
         
         $this->load->config('email');
         $this->load->library('email');
+        $this->email->set_mailtype("html");
         
         if($this->input->post("hapus")){
             foreach ($_POST['id_agency'] as $id_agency) {
@@ -63,8 +74,20 @@ class Agency extends CI_CONTROLLER{
                 // var_dump($email);
                 $from = $this->config->item('smtp_user');
                 $to = $email;
-                $subject = 'cek';
-                $message = 'ditolak boy';
+                $subject = 'AGENCY PROPERTY MEMBER OF SHARIA GRUP INDONESIA';
+                $message = '
+                <p><b>AGENCY PROPERTY MEMBER OF SHARIA GRUP INDONESIA</b></p><br>
+                <p>Assalamua\'alaikum Warahmatullahi Wabarakatuh...</p><br>
+                <p>Mohon maaf, setelah meninjau registrasi Anda,
+                saat ini kami tidak dapat menerima Anda untuk bergabung menjadi Agency Property.</p>
+                <p>Kami tidak menyetujui registrasi Anda karena alasan-alasan yang tercantum dibawah ini:</p>
+                <p>1. Data Anda belum terdaftar oleh Admin kami.<br>
+                2. Data Anda telah didaftarkan sebelumnya (Data Ganda).</p><br><br><br><br><br><br><br><br><br><br>
+                <p>Hormat kami,<br>
+                Sharia Grup Indonesia<br>
+                Recruitment Administrator</p>
+                <p>Jalan Darul Quran Ruko C09-C10,<br>
+                Loji, Bogor Barat, Kota Bogor. 16117</p>';
     
                 $this->email->set_newline("\r\n");
                 $this->email->from($from);
@@ -80,15 +103,46 @@ class Agency extends CI_CONTROLLER{
 
         } else {
             foreach ($_POST['id_agency'] as $id_agency) {
-                
                 $cek_email = $this->Agency_model->getAgencyById($id_agency);;
                 $email = $cek_email['email'];
                 $nama_agency = $cek_email['nama_agency'];
+                $nama_pemilik = $cek_email['nama_pemilik'];
+                $no_wa = $cek_email['no_wa'];
 
                 $from = $this->config->item('smtp_user');
                 $to = $email;
-                $subject = 'cek';
-                $message = "diterima cuy";
+                $subject = 'AGENCY PROPERTY MEMBER OF SHARIA GRUP INDONESIA';
+                $message = "
+                <p>AGENCY PROPERTY MEMBER OF SHARIA GRUP INDONESIA</p><br>
+                <p>Assalamua'alaikum Warahmatullahi Wabarakatuh...</p><br>
+                <p>Selamat!</p>
+                <p>Terima Kasih Telah Mendaftar</p>
+
+                <table>
+                    <tr>
+                        <td>Nama Anda</td>
+                        <td>: {$nama_pemilik}</td>
+                    </tr>
+                    <tr>
+                        <td>No. WhatsApp</td>
+                        <td>: {$no_wa}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>: {$email}</td>
+                    </tr>
+                    <tr>
+                        <td>URL Akad</td>
+                        <td>: " . base_url() . "agency/akad/{$id_agency}/" . rawurlencode($nama_agency) ."</td>
+                    </tr>
+                </table>
+                
+                <p>Hormat kami,<br>
+                Sharia Grup Indonesia<br>
+                Recruitment Administrator</p>
+                
+                <p>Jalan Darul Quran Ruko C09-C10,<br>
+                Loji, Bogor Barat, Kota Bogor. 16117</p>";
     
                 $this->email->set_newline("\r\n");
                 $this->email->from($from);
@@ -125,14 +179,25 @@ class Agency extends CI_CONTROLLER{
         if($cek_email == 0 && $cek_hp == 0){
             $this->load->config('email');
             $this->load->library('email');
+            $this->email->set_mailtype("html");
             $nama_agency = rawurlencode($this->input->post("nama_agency", true));
             $id = $this->Agency_model->getLastId();
             $id_agency = $id['id_agency'] + 1;
             
             $from = $this->config->item('smtp_user');
             $to = $this->input->post('email', true);
-            $subject = 'cek';
-            $message = base_url() . 'agency/akad/' .$id_agency. '/' . $nama_agency;
+            $subject = 'AGENCY PROPERTY SHARIA GRUP INDONESIA';
+            $message = '            
+                        <p><b>SELAMAT DATANG DI SHARIA GRUP INDONESIA</b></p>
+                        <p>Assalamua\'alaikum Warahmatullahi Wabarakatuh...</p>
+                        <p>Terima kasih sudah melakukan registrasi di Agency Property Member of Sharia Grup Indonesia.</p>
+                        <p>Permintaan Anda telah dikirimkan ke sistem kami. Anda akan menerima email konfirmasi ketika registrasi Anda telah disetujui. Silahkan menunggu konfirmasi selanjutnya selama 2 x 24 Jam.</p>
+                        
+                        <p>Hormat kami, </p>
+                        <p>Sharia Grup Indonesia<br>
+                        Recruitment Administrator</p>
+                        <p>Jalan Darul Quran Ruko C09-C10,<br>
+                        Loji, Bogor Barat, Kota Bogor. 16117</p>';
 
             $this->email->set_newline("\r\n");
             $this->email->from($from);
@@ -153,6 +218,10 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function editAgency(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+		}
         $this->Agency_model->editAgency();
         
         $this->session->set_flashdata('agency', 'diedit');
@@ -160,6 +229,10 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function getAgencyById(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+		}
         $id_agency = $_POST['id_agency'];
         $agency = $this->Agency_model->getAgencyById($id_agency);
         echo json_encode($agency);
@@ -209,12 +282,20 @@ class Agency extends CI_CONTROLLER{
     
 
     public function getMarketingAktif(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+		}
         $id_agency = $_POST['id_agency'];
         $agency = $this->Agency_model->getMarketingAktif($id_agency);
         echo json_encode($agency);
     }
 
     public function getMarketingNonaktif(){
+        if($this->session->userdata('level') != "super"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+		}
         $id_agency = $_POST['id_agency'];
         $agency = $this->Agency_model->getMarketingNonaktif($id_agency);
         echo json_encode($agency);

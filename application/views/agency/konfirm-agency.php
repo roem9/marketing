@@ -78,7 +78,7 @@
                               <tr>
                                 <td><input type="checkbox" name="id_agency[]" id="id_agency[]" value="<?=$agency['id_agency']?>"></td>
                                 <td><?= $agency['nama_agency']?></td>
-                                <td><?=$agency['nama_agency']?></td>
+                                <td><?=$agency['nama_pemilik']?></td>
                                 <td><?=$agency['email']?></td>
                                 <td><?=$agency['no_wa']?></td>
                                 <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td>

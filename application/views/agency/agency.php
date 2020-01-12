@@ -155,7 +155,7 @@
                 var html = '';
                 var i;
                 for(i=0; i<data.length; i++){
-                    html += '<li class="list-group-item"><input type="checkbox" name="id_marketing[]" class="mr-1" value="' + data[i].kd_marketing + '" id="' + i + '"><label for="' + i + '">' + data[i].nama_marketing + '</label></li>';
+                    html += '<li class="list-group-item">' + data[i].nama_marketing + '</li>';
                 }
                 $('#list-marketing-aktif').html(html);
             }

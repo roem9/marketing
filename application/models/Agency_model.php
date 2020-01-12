@@ -68,7 +68,8 @@ class Agency_model extends CI_MODEL{
             "npwp" => $this->input->post('npwp', TRUE),
             "batch" => '5',
             "status_edit" => 'on',
-            "status" => 'konfirm'
+            "status" => 'konfirm',
+            "akad" => 'tidak tersedia'
         ];
 
         $this->db->insert("agency", $data['agency']);

@@ -31,6 +31,10 @@
                                 <label for="link_akad">Link Akad</label>
                                 <input class='form-control form-control-sm' type="text" name="link_akad" id="link_akad" autocomplete="off" autocorrect="off" autocapitalize="off" readonly>
                             </div>
+                            <div class="form-group">
+                                <label for="link_marketing">Link Marketing</label>
+                                <input class='form-control form-control-sm' type="text" name="link_marketing" id="link_marketing" autocomplete="off" autocorrect="off" autocapitalize="off" readonly>
+                            </div>
                         </div>
                         <div class="form-detail" id="form-2">
                             <form action="<?= base_url()?>agency/editagency" method="post">

@@ -18,13 +18,13 @@
       
       <li class="nav-item" id="sidebarLac">
         <a class="nav-link" href="<?= base_url()?>lac/listlac">
-        <i class="fas fa-fw fa-user"></i>
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
         <span>LAC</span></a>
       </li>
 
       <li class="nav-item" id="sidebarAgency">
         <a class="nav-link" href="<?=base_url()?>agency/batch/3">
-        <i class="fas fa-fw fa-user"></i>
+        <i class="fas fa-fw fa-warehouse"></i>
         <span>Agency</span></a>
       </li>
 

@@ -119,6 +119,7 @@
             dataType : 'json',
             success : function(data){
               $("#link_akad").val('<?= base_url()?>agency/akad/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
+              $("#link_marketing").val('<?= base_url()?>marketing/inputmarketingagency/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
               $("#status").val(data.status);
               $("#nama_agency").val(data.nama_agency);
               $("#nama_pemilik").val(data.nama_pemilik);

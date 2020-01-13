@@ -28,7 +28,6 @@ class Agency extends CI_CONTROLLER{
         $this->load->view('templates/sidebar');
         $this->load->view('modal/modal_add_agency');
         $this->load->view('modal/modal_agency');
-        $this->load->view('modal/modal_link');
         $this->load->view('agency/agency', $data);
         $this->load->view('templates/footer');
     }

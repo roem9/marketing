@@ -83,7 +83,6 @@ class Agency_model extends CI_MODEL{
 
     public function getAgencyByIdByName($id_agency, $nama_agency){
         $nama_agency = rawurldecode($nama_agency);
-
         $this->db->from("agency");
         $this->db->where("id_Agency", $id_agency);
         $this->db->where("nama_agency", $nama_agency);

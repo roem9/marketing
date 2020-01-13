@@ -239,7 +239,6 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function akad($id_agency, $nama_agency){
-    // public function akad(){
         $data['header'] = 'Form Akad';
         $data['title'] = 'Form Akad';
         $data['agency'] = $this->Agency_model->getAgencyByIdByName($id_agency, $nama_agency);

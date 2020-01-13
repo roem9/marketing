@@ -13,4 +13,5 @@ class Home extends CI_CONTROLLER{
     public function index(){
         redirect(base_url("login"));
     }
+
 }

@@ -10,8 +10,8 @@
       </a>
 
       
-      <li class="nav-item" id="marketing">
-        <a class="nav-link" href="#">
+      <li class="nav-item" id="sidebarMarketing">
+        <a class="nav-link" href="<?=base_url()?>marketing/si">
           <i class="fas fa-fw fa-user"></i>
           <span>Marketing</span></a>
       </li>

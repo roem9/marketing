@@ -133,7 +133,7 @@ class Marketing_model extends CI_MODEL{
 
         $this->db->select("SUBSTRING(kd_marketing, 6, 5) as kd_marketing");
         $this->db->from("marketing_agency");
-        $this->db->where("SUBSTRING(kd_marketing, 3, 2) = ", $yy);
+        $this->db->where("SUBSTRING(kd_marketing, 1, 2) = ", $yy);
         $this->db->order_by("kd_marketing", "desc");
         
         $kode = $this->db->get()->row_array();

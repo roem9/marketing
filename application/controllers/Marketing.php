@@ -66,38 +66,32 @@ class Marketing extends CI_CONTROLLER{
             $email = $this->input->post("email", TRUE);
             $nama_agency = $this->input->post("nama_agency", TRUE);
 
-            // var_dump($email);
             $from = $this->config->item('smtp_user');
             $to = $email;
             $subject = 'AGENCY PROPERTY MEMBER OF SHARIA GRUP INDONESIA';
-            $message = '
+            $message = "
             Terima kasih untuk Anda atas registrasi untuk Kode Unik Marketing<br><br>
             Anda telah terdaftar dengan Nomor Kode Unik Marketing (KUM) : {$kd_marketing} <br><br>
             Dan tergabung dalam Team Agency Sharia Institute Member of Sharia Grup Indonesia<br><br>
             Silahkan disimpan dengan baik dan diingat untuk Kode Unik Marketingnya<br><br>
             Kode Unik Marketing ini digunakan dengan baik dan bijak,<br><br>
             PERHATIAN! : KODE UNIK MARKETING INI BERLAKU HANYA DI DALAM NAUNGAN TEAM MEMBER OF SHARIA GRUP INDONESIA<br><br>
-            Terima Kasih banyak, kami do\'akan selalu Anda makin closing rutin property setiap bulan dari satuan hingga puluhan unit, makin kaya berkah melimpah serta selalu bersyukur kepada Allah<br><br>
+            Terima Kasih banyak, kami do'akan selalu Anda makin closing rutin property setiap bulan dari satuan hingga puluhan unit, makin kaya berkah melimpah serta selalu bersyukur kepada Allah<br><br>
             Aamiin...<br><br>
             Akhirul Kalam,<br><br>
             Jazakumullah Khair<br><br>
             Sharia Grup Indonesia,<br><br>
-            Menjadi Perusahaan Berbasis Syariah No Satu di Indonesia    ';
+            Menjadi Perusahaan Berbasis Syariah No Satu di Indonesia";
 
             $this->email->set_newline("\r\n");
             $this->email->from($from);
             $this->email->to($to);
             $this->email->subject($subject);
             $this->email->message($message);
-            
-            if ($this->email->send()) {
-                $this->Agency_model->hapusAgency($id_agency);
-            }
-
+            $this->email->send();
             $this->session->set_flashdata('berhasil', 'Berhasil mendaftarkan data marketing Anda. Silahkan mengecek email untuk mendapatkan kode marketing');
         }
         redirect($_SERVER['HTTP_REFERER']);
-
     }
 
     public function getMarketingById(){

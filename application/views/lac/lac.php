@@ -45,7 +45,7 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a href="lac.php" class="nav-link active">LAC</a>
+                        <a href="<?= base_url()?>lac/listlac" class="nav-link active">LAC</a>
                     </li>
                         <a href="#" data-toggle="modal" data-target="#modal_add_lac" class="nav-link btn btn-success btn-sm">Tambah LAC</a>
                     </ul>

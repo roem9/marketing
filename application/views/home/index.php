@@ -12,7 +12,7 @@
             <h1 class="h3 mb-0 text-gray-800 mt-3"><?= $header?></h1>
         </div>
 
-        <div class="row fo-13">
+        <div class="row fo-14">
             <div class="col-3">
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-info">

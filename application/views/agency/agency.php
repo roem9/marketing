@@ -48,7 +48,7 @@
               </ul>
             </div>
             <div class="card-body">
-              <table id="dataTable" class="table table-sm fo-13">
+              <table id="dataTable" class="table table-sm fo-14">
                   <thead>
                     <tr>
                       <th rowspan=2>No</th>
@@ -74,7 +74,7 @@
                                 <td><?= $agency['nama_agency']?></td>
                                 <td style="text-align:center">
                                   <?php if($agency['akad'] == 'tersedia'):?>
-                                    <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download text-primary"></i></a>
+                                    <a href="<?= base_url()?>agency/suratakad/<?=$agency['id_agency'] . '/' . rawurlencode($agency['nama_agency'])?>" target="_blank"><i class="fa fa-file-download"></i></a>
                                   <?php else : ?>
                                     -
                                   <?php endif;?>
@@ -122,14 +122,15 @@
               $("#link_marketing").val('<?= base_url()?>marketing/inputmarketingagency/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
               $("#status").val(data.status);
               $("#nama_agency").val(data.nama_agency);
+              $("#nama-title").html(data.nama_agency);
               $("#nama_pemilik").val(data.nama_pemilik);
               $("#email").val(data.email);
               $("#no_wa").val(data.no_wa);
               $("#no_hp").val(data.no_hp);
               $("#alamat").val(data.alamat);
-              $("#tgl_masuk").val(data.tgl_masuk);
+              $("#tgl_masuk").val(data.tgl_akad);
               $("#no_rek").val(data.no_rek);
-              $("#nama_bank").val(data.bank);
+              $("#nama_bank").val(data.nama_bank);
               $("#an_rek").val(data.an_rek);
               $("#npwp").val(data.npwp);
               $("#id_agency").val(data.id_agency);
@@ -187,22 +188,6 @@
 
       })
 
-      $(".modalLink").click(function(){
-        const id = $(this).data('id');
-        // console.log(id)
-        $.ajax({
-            url : "<?=base_url()?>agency/getagencybyid",
-            method : "POST",
-            data : {id_agency : id},
-            async : true,
-            dataType : 'json',
-            success : function(data){
-              $("#link_akad").val('<?= base_url()?>agency/akad/' + data.id_agency + '/' + encodeURIComponent(data.nama_agency));
-              $("#namaAgency").html(data.nama_agency);
-            }
-        })
-      })
-
       $("#btn-form-1").click(function(){
         $("#btn-form-1").addClass("active")
         $("#btn-form-2").removeClass("active")
@@ -213,47 +198,47 @@
         $("#form-2").hide();
         $("#form-3").hide();
         $("#form-4").hide();
-    })
+      })
     
-    $("#btn-form-2").click(function(){
-        $("#btn-form-1").removeClass("active")
-        $("#btn-form-2").addClass("active")
-        $("#btn-form-3").removeClass("active")
-        $("#btn-form-4").removeClass("active")
+      $("#btn-form-2").click(function(){
+          $("#btn-form-1").removeClass("active")
+          $("#btn-form-2").addClass("active")
+          $("#btn-form-3").removeClass("active")
+          $("#btn-form-4").removeClass("active")
 
-        $("#form-1").hide();
-        $("#form-2").show();
-        $("#form-3").hide();
-        $("#form-4").hide();
-    })
-    
-    $("#btn-form-3").click(function(){
-        $("#btn-form-1").removeClass("active")
-        $("#btn-form-2").removeClass("active")
-        $("#btn-form-3").addClass("active")
-        $("#btn-form-4").removeClass("active")
+          $("#form-1").hide();
+          $("#form-2").show();
+          $("#form-3").hide();
+          $("#form-4").hide();
+      })
+      
+      $("#btn-form-3").click(function(){
+          $("#btn-form-1").removeClass("active")
+          $("#btn-form-2").removeClass("active")
+          $("#btn-form-3").addClass("active")
+          $("#btn-form-4").removeClass("active")
 
-        $("#form-1").hide();
-        $("#form-2").hide();
-        $("#form-3").show();
-        $("#form-4").hide();
-    })
-    
-    $("#btn-form-4").click(function(){
-        $("#btn-form-1").removeClass("active")
-        $("#btn-form-2").removeClass("active")
-        $("#btn-form-3").removeClass("active")
-        $("#btn-form-4").addClass("active")
+          $("#form-1").hide();
+          $("#form-2").hide();
+          $("#form-3").show();
+          $("#form-4").hide();
+      })
+      
+      $("#btn-form-4").click(function(){
+          $("#btn-form-1").removeClass("active")
+          $("#btn-form-2").removeClass("active")
+          $("#btn-form-3").removeClass("active")
+          $("#btn-form-4").addClass("active")
 
-        $("#form-1").hide();
-        $("#form-2").hide();
-        $("#form-3").hide();
-        $("#form-4").show();
-    })  
+          $("#form-1").hide();
+          $("#form-2").hide();
+          $("#form-3").hide();
+          $("#form-4").show();
+      })  
 
-    $("#simpanAgency").click(function(){
-      var c = confirm("Yakin akan mengubah data agency?")
-      return c;
-    })
+      $("#simpanAgency").click(function(){
+        var c = confirm("Yakin akan mengubah data agency?")
+        return c;
+      })
 
     </script>

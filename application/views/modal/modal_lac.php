@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white" id="exampleModalScrollableTitle">Detail LAC <span id="namaAgency"></span></h5>
+        <h5 class="modal-title text-white" id="nama-title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -25,7 +25,7 @@
                   </li>
               </ul>
           </div>
-          <div class="card-body fo-13">
+          <div class="card-body fo-14">
               <input type="hidden" name="id_peserta" id="id_peserta">
               <div class="form-detail" id="form-1">
                 <div class="form-group">

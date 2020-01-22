@@ -7,6 +7,13 @@ class Lac extends CI_CONTROLLER{
     }
 
     public function listLac(){
+        if($this->session->userdata("level") != "super" && $this->session->userdata("level") != "adminsi"){
+            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
+			redirect(base_url("login"));
+        }
+
+        $level = $this->session->userdata("level");
+
         $data['header'] = 'List LAC';
         $data['title'] = 'List LAC';
         $lac = $this->Lac_model->getAllLac();
@@ -20,7 +27,13 @@ class Lac extends CI_CONTROLLER{
         }
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
+
+        if($level == "super") {
+            $this->load->view('templates/sidebar');
+        } else if($level == "adminsi") {
+            $this->load->view('templates/si_sidebar');
+        }
+        
         $this->load->view('modal/modal_add_lac');
         $this->load->view('modal/modal_lac', $data);
         $this->load->view('lac/lac', $data);

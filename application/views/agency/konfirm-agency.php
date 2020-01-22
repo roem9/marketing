@@ -62,14 +62,14 @@
             <div class="card-body">
               <form action="<?= base_url()?>agency/konfirm" method="POST" enctype="multipart/form-data" id="formInputMarketing">
                 <div class="table-responsive">
-                  <table id="dataTable" class="table table-sm fo-13">
+                  <table id="dataTable" class="table table-sm fo-14">
                     <thead>
                         <th></th>
                         <th>Nama Agency</th>
                         <th>Nama Pemilik</th>
                         <th>Email</th>
                         <th>No. Handphone</th>
-                        <th>Detail</th>
+                        <!-- <th>Detail</th> -->
                     </thead>
                     <tbody>
                       <?php 
@@ -81,7 +81,7 @@
                                 <td><?=$agency['nama_pemilik']?></td>
                                 <td><?=$agency['email']?></td>
                                 <td><?=$agency['no_wa']?></td>
-                                <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td>
+                                <!-- <td><center><a href="#" class="badge badge-warning modalAgency" data-toggle="modal" data-target="#exampleModalScrollable" data-id="<?= $agency['id_agency']?>">detail</a></center></td> -->
                               </tr>
                       <?php endforeach;?>
                     </tbody>
@@ -132,6 +132,7 @@
             async : true,
             dataType : 'json',
             success : function(data){
+              console.log(data)
               $("#status").val(data.status);
               $("#nama_agency").val(data.nama_agency);
               $("#nama_pemilik").val(data.nama_pemilik);

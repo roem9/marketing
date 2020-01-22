@@ -27,15 +27,15 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a href="<?=base_url()?>marketing/si" class="nav-link <?php if($tab == 'si')echo 'active'?>" id="aktif">SI</a>
+                            <a href="<?=base_url()?>marketing/si" class="nav-link <?php if($tab == 'si')echo 'active'?>" id="aktif">Sharia Institute</a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?=base_url()?>marketing/agency" class="nav-link <?php if($tab == 'agency')echo 'active'?>" id="konfirm">Agency</a>
+                            <a href="<?=base_url()?>marketing/agency" class="nav-link <?php if($tab == 'agency')echo 'active'?>" id="konfirm">Agency Partner</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body">
-                    <table id="dataTable" class="table table-sm fo-13">
+                    <table id="dataTable" class="table table-sm fo-14">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -71,6 +71,7 @@
     $("#sidebarMarketing").addClass("active");
     
     $(".modalMarketing").click(function(){
+        $("#formDetailMarketing").attr('action', '<?= base_url()?>marketing/editmarketing')
         const id = $(this).data('id');
         $.ajax({
             url : "<?=base_url()?>marketing/getmarketingbyid",
@@ -79,6 +80,7 @@
             async : true,
             dataType : 'json',
             success : function(data){
+                $("#nama-title").html(data.nama_marketing);
                 $("#status").val(data.status);
                 $("#nama_marketing").val(data.nama_marketing);
                 $("#email").val(data.email);
@@ -86,52 +88,42 @@
                 $("#no_wa").val(data.no_wa);
                 $("#tgl_masuk").val(data.tgl_masuk);
                 $("#alamat").val(data.alamat);
-                $("#rt").val(data.rt);
-                $("#rw").val(data.rw);
-                $("#kel").val(data.kel);
-                $("#kec").val(data.kec);
-                $("#kab_kota").val(data.kab_kota);
                 $("#no_rek").val(data.no_rek);
                 $("#nama_bank").val(data.nama_bank);
                 $("#an_rek").val(data.an_rek);
+                $("#cabang_bank").val(data.cabang_bank);
                 $("#npwp").val(data.no_npwp);
                 $("#kd_marketing").val(data.kd_marketing);
+                $("#table").val("marketing_si");
             }
         })
     })
     
     $("#btn-form-1").addClass("active")
     $("#form-2").hide();
-    $("#form-3").hide();
 
     $("#btn-form-1").click(function(){
         $("#btn-form-1").addClass("active")
         $("#btn-form-2").removeClass("active")
-        $("#btn-form-3").removeClass("active")
 
         $("#form-1").show();
         $("#form-2").hide();
-        $("#form-3").hide();
     })
     
     $("#btn-form-2").click(function(){
         $("#btn-form-1").removeClass("active")
         $("#btn-form-2").addClass("active")
-        $("#btn-form-3").removeClass("active")
 
         $("#form-1").hide();
         $("#form-2").show();
-        $("#form-3").hide();
     })
     
     $("#btn-form-3").click(function(){
         $("#btn-form-1").removeClass("active")
         $("#btn-form-2").removeClass("active")
-        $("#btn-form-3").addClass("active")
 
         $("#form-1").hide();
         $("#form-2").hide();
-        $("#form-3").show();
     })
 
     $("#updateModal").click(function(){

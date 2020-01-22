@@ -32,6 +32,15 @@ class Lac_model extends CI_MODEL{
         $this->db->where("id_lac", $id_lac);
         return $this->db->get()->row_array();
     }
+    
+    public function getLacByIdByName($id_lac, $nama_lac){
+        $nama_lac = rawurldecode($nama_lac);
+        
+        $this->db->from("lac");
+        $this->db->where("id_lac", $id_lac);
+        $this->db->where("nama_lac", $nama_lac);
+        return $this->db->get()->row_array();
+    }
 
     public function editLac(){
         $id_lac = $this->input->post("id_lac");

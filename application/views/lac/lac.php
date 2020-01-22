@@ -51,7 +51,7 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <table id="dataTable" class="table table-sm fo-13">
+                    <table id="dataTable" class="table table-sm fo-14">
                         <thead>
                             <tr>
                                 <th rowspan=2>No</th>
@@ -108,10 +108,11 @@
             async : true,
             dataType : 'json',
             success : function(data){
-                $("#link_input").val("<?=base_url()?>marketing/input/" + data.id_lac + "/" + encodeURIComponent(data.nama_lac));
+                $("#link_input").val("<?=base_url()?>marketing/inputmarketingsi/" + data.id_lac + "/" + encodeURIComponent(data.nama_lac));
                 $("#status").val(data.status);
                 $("#nama_lac").val(data.nama_lac)
                 $("#id_lac").val(data.id_lac)
+                $("#nama-title").html(data.nama_lac)
             }
         })
 

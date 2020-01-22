@@ -33,13 +33,18 @@ class Login extends CI_CONTROLLER{
 				'level' => $level,
 				'status' => "login"
             );
- 
+            
+            // var_dump($level);
 			$this->session->set_userdata($data_session);
             
             if($level == 'super'){
                 redirect(base_url("agency/batch/3"));
-            } else {
-                echo "cek";
+            } else if($level == 'adminagency'){
+                redirect(base_url("agency/batch/3"));
+            } else if($level == 'adminsi'){
+                redirect(base_url("lac/listlac"));
+            } else if($level == 'keuangan'){
+                redirect(base_url("marketing/si"));
             }
  
 		}else{

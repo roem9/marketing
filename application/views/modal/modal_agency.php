@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="exampleModalScrollableTitle">Detail Agency</h5>
+                <h5 class="modal-title text-white" id="nama-title"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,7 +25,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="card-body fo-13">
+                    <div class="card-body fo-14">
                         <div class="form-detail" id="form-1">
                             <div class="form-group">
                                 <label for="link_akad">Link Akad</label>
@@ -73,8 +73,8 @@
                                     <textarea name="alamat" id="alamat" class="form-control form-control-sm" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tgl_masuk">Tgl Masuk</label>
-                                    <input class='form-control form-control-sm' type="date" name="tgl_masuk" id="tgl_masuk">
+                                    <label for="tgl_masuk">Tgl Akad</label>
+                                    <input class='form-control form-control-sm' type="date" name="tgl_masuk" id="tgl_masuk" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="no_rek">No. Rekening</label>
@@ -92,17 +92,17 @@
                                     <label for="npwp">No. NPWP</label>
                                     <input class='form-control form-control-sm' type="text" name="npwp" id="npwp" autocomplete="off" autocorrect="off" autocapitalize="off">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm btn-block" id="simpanAgency">Simpan</button>
+                                <button type="submit" class="btn btn-primary btn-sm btn-block" id="simpanAgency">Update</button>
                             </form>
                         </div>
-                        <div class="form-detail fo-13" id="form-3">
+                        <div class="form-detail fo-14" id="form-3">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-primary">Marketing Aktif <span class="badge badge-warning" id="jumlah-marketing-aktif"></span></li>
                                 <li class="list-group-item" id="pesan-aktif"><i class="fa fa-exclamation-circle text-warning"></i> Tidak ada marketing</li>
                                 <div id="list-marketing-aktif"></div>
                             </ul>
                         </div>
-                        <div class="form-detail fo-13" id="form-4">
+                        <div class="form-detail fo-14" id="form-4">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-danger">Marketing Nonaktif <span class="badge badge-warning" id="jumlah-marketing-nonaktif"></span></li>
                                 <li class="list-group-item" id="pesan-nonaktif"><i class="fa fa-exclamation-circle text-warning"></i> Tidak ada marketing</li>

@@ -54,22 +54,45 @@ class Agency_model extends CI_MODEL{
         return $this->db->get()->row_array();
     }
 
-    public function tambahAgency(){
+    public function uploadBuktiTransfer($id_agency){
+        $config['upload_path'] = './assets/img';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['file_name'] = "bukti_" . $id_agency . "_" . $_FILES["foto"]["name"];
+        $config['max_size']  = '2048';
+        $config['overwrite']  = 'true';
+      
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->do_upload('foto');
+
+        return $config['file_name'];
+    }
+    
+    public function uploadKtp($id_agency){
+        $config['upload_path'] = './assets/img';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['file_name'] = "ktp_" . $id_agency . "_" . $_FILES["foto"]["name"];
+        $config['max_size']  = '2048';
+        $config['overwrite']  = 'true';
+      
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->do_upload('foto');
+
+        return $config['file_name'];
+    }
+
+    public function tambahAgency($id_agency, $file){
         $data['agency'] = [
-            "nama_agency" => $this->input->post('nama_agency', TRUE),
-            "nama_pemilik" => $this->input->post('nama', TRUE),
+            "id_agency" => $id_agency,
+            "nama_agency" => strtoupper($this->input->post('nama_agency', TRUE)),
+            "nama_pemilik" => ucwords($this->input->post('nama', TRUE)),
             "email" => $this->input->post('email', TRUE),
             "no_wa" => $this->input->post('no_wa', TRUE),
             "no_hp" => $this->input->post('no_hp', TRUE),
-            "no_rek" => $this->input->post('no_rek', TRUE),
-            "bank" => $this->input->post('bank', TRUE),
-            "an_rek" => $this->input->post('an_rek', TRUE),
-            "no_rek" => $this->input->post('no_rek', TRUE),
-            "npwp" => $this->input->post('npwp', TRUE),
+            "bukti_transfer" => $file,
             "batch" => '5',
-            "status_edit" => 'on',
             "status" => 'konfirm',
-            "akad" => 'tidak tersedia'
+            "akad" => 'tidak tersedia',
+            "tgl_akad" => "2020-01-17"
         ];
 
         $this->db->insert("agency", $data['agency']);
@@ -84,15 +107,6 @@ class Agency_model extends CI_MODEL{
     public function getAgencyByIdByName($id_agency, $nama_agency){
         $nama_agency = rawurldecode($nama_agency);
         $this->db->from("agency");
-        $this->db->where("id_Agency", $id_agency);
-        $this->db->where("nama_agency", $nama_agency);
-        return $this->db->get()->row_array();
-    }
-    
-    public function getSuratAkad($id_agency, $nama_agency){
-        $nama_agency = rawurldecode($nama_agency);
-
-        $this->db->from("akad");
         $this->db->where("id_Agency", $id_agency);
         $this->db->where("nama_agency", $nama_agency);
         return $this->db->get()->row_array();
@@ -116,9 +130,8 @@ class Agency_model extends CI_MODEL{
             "no_wa" => $this->input->post("no_wa", TRUE),
             "no_hp" => $this->input->post("no_hp", TRUE),
             "alamat" => $this->input->post("alamat", TRUE),
-            "tgl_masuk" => $this->input->post("tgl_masuk", TRUE),
             "no_rek" => $this->input->post("no_rek", TRUE),
-            "bank" => $this->input->post("nama_bank", TRUE),
+            "nama_bank" => $this->input->post("nama_bank", TRUE),
             "an_rek" => $this->input->post("an_rek", TRUE),
             "npwp" => $this->input->post("npwp", TRUE),
             "status" => $this->input->post("status", TRUE),
@@ -162,26 +175,19 @@ class Agency_model extends CI_MODEL{
 
         $alamat_lengkap = $alamat . ' RT. ' . $rt . ' / RW. ' . $rw . ', ' . $kel_desa . ' ' . $kel . ', Kec. ' . $kec . ', ' . $kab_kota . ' Provinsi ' . $prov;
 
-        $data['akad'] = [
-            "nama" => $this->input->post("nama", TRUE),
-            "nama_agency" => $this->input->post("nama_agency", TRUE),
+        $data['agency'] = [
             "no_ktp" => $this->input->post("no_ktp", TRUE),
             "alamat" => $alamat_lengkap,
-            "no_hp" => $this->input->post("no_hp", TRUE),
-            "tgl_akad" => $this->input->post("tgl_bergabung", TRUE),
-            "id_agency" => $this->input->post("id_agency", TRUE)
+            "foto_ktp" => $foto,
+            "nama_bank" => strtoupper($this->input->post("nama_bank", TRUE)),
+            "cabang_bank" => ucwords($this->input->post("cabang_bank", TRUE)),
+            "no_rek" => $this->input->post("no_rek", TRUE),
+            "an_rek" => ucwords($this->input->post("an_rek", TRUE)),
+            "npwp" => $this->input->post("npwp", TRUE),
+            "akad" => "tersedia"
         ];
 
-        $this->db->insert("akad", $data['akad']);
-
-        $data['agency'] = [
-            "alamat" => $alamat_lengkap,
-            "tgl_masuk" => $this->input->post("tgl_bergabung", TRUE),
-            "akad" => "on",
-            "ktp" => $foto
-        ];
-
-        $this->db->where("id_agency", $this->input->post("id_agency", TRUE));
+        $this->db->where("id_agency", $id_agency);
         $this->db->update("agency", $data['agency']);
     }
 }

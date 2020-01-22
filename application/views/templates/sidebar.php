@@ -10,6 +10,13 @@
       </a>
 
       
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Super Admin
+      </div>
+
       <li class="nav-item" id="sidebarMarketing">
         <a class="nav-link" href="<?=base_url()?>marketing/si">
           <i class="fas fa-fw fa-user"></i>

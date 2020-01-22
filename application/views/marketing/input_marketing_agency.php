@@ -92,8 +92,12 @@
                                             <input type="text" maxlength=3 name="rw" id="rw" class="form-control form-control-sm form-2" autocomplete="off" autocorrect="off" autocapitalize="off">
                                         </div>
                                         <div class="form-group">
-                                            <label for="kel">Kelurahan <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength=100 name="kel" id="kel" class="form-control form-control-sm form-2" autocomplete="off" autocorrect="off" autocapitalize="off">
+                                            <label for="kel">Kelurahan / Desa <span class="text-danger">*</span></label>
+                                            <div class="form-gro">
+                                                <label class="radio-inline mr-3"><input type="radio" id="kel_desa" name="kel_desa" value="Kel." checked> &nbsp; Kelurahan</label>
+                                                <label class="radio-inline"><input type="radio" id="kel_desa" name="kel_desa" value="Desa"> &nbsp; Desa</label>
+                                            </div>
+                                            <input data-form="Kelurahan / Desa" class='form-control form-control-sm form-2' type="text" name="kel" id="kel" autocomplete="off" autocorrect="off" autocapitalize="off">
                                         </div>
                                         <div class="form-group">
                                             <label for="keckel">Kecamatan <span class="text-danger">*</span></label>
@@ -110,19 +114,23 @@
                                     </div>
                                     <div class="form-detail" id="form-3">
                                         <div class="form-group">
-                                            <label for="no_rek">No Rekening <span class="text-danger">*</span></label>
-                                            <input type="text" maxlength=20 name="no_rek" id="no_rek" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
-                                        </div>
-                                        <div class="form-group">
                                             <label for="bank">Nama Bank <span class="text-danger">*</span></label>
                                             <input type="text" maxlength=100 name="bank" id="bank" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
                                         </div>
                                         <div class="form-group">
-                                            <label for="an_rek">A.N Rekening <span class="text-danger">*</span></label>
+                                            <label for="cabang_bank">Cabang Bank <span class="text-danger">*</span></label>
+                                            <input type="text" maxlength=100 name="cabang_bank" id="cabang_bank" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="no_rek">No Rekening <span class="text-danger">*</span></label>
+                                            <input type="text" maxlength=20 name="no_rek" id="no_rek" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="an_rek">Nama Pemilik Rekening <span class="text-danger">*</span></label>
                                             <input type="text" maxlength=100 name="an_rek" id="an_rek" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
                                         </div>
                                         <div class="form-group">
-                                            <label for="npwp">No NPWP <span class="text-danger">*</span></label>
+                                            <label for="npwp">NPWP <span class="text-danger">*</span></label>
                                             <input type="text" maxlength=15 name="npwp" id="npwp" class="form-control form-control-sm form-3" autocomplete="off" autocorrect="off" autocapitalize="off">
                                         </div>
                                         <div class="d-flex justify-content-between">

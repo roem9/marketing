@@ -6,7 +6,7 @@ class Agency extends CI_CONTROLLER{
     }
 
     public function batch($batch){
-        if($this->session->userdata('level') != "super" && $this->session->userdata('level') != "adminagency"){
+        if($this->session->userdata('level') != "super" && $this->session->userdata('level') != "adminagency" && $this->session->userdata('level') != 'keuangan'){
             $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
 			redirect(base_url("login"));
         }
@@ -25,16 +25,21 @@ class Agency extends CI_CONTROLLER{
             $data['agency'][$key]['nonaktif'] = COUNT($this->Agency_model->getMarketingNonaktif($agency['id_agency']));
         }
         $data['batch'] = $batch;
+        $data['level'] = $level;
 
         $this->load->view('templates/header', $data);
 
         if($level == 'super'){
             $this->load->view('templates/sidebar');
+            $this->load->view('modal/modal_agency');
         } else if($level == 'adminagency'){
             $this->load->view('templates/agency_sidebar');
-        };
-
-        $this->load->view('modal/modal_agency');
+            $this->load->view('modal/modal_agency');
+        } else if($level == 'keuangan'){
+            $this->load->view("templates/keuangan_sidebar");
+            $this->load->view('modal/keuangan_modal_agency');
+        }
+        
         $this->load->view('agency/agency', $data);
         $this->load->view('templates/footer');
     }
@@ -286,20 +291,12 @@ class Agency extends CI_CONTROLLER{
     }
     
     public function getMarketingAktif(){
-        if($this->session->userdata('level') != "super"){
-            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
-			redirect(base_url("login"));
-		}
         $id_agency = $_POST['id_agency'];
         $agency = $this->Agency_model->getMarketingAktif($id_agency);
         echo json_encode($agency);
     }
 
     public function getMarketingNonaktif(){
-        if($this->session->userdata('level') != "super"){
-            $this->session->set_flashdata('login', 'Maaf, Anda harus login terlebih dahulu');
-			redirect(base_url("login"));
-		}
         $id_agency = $_POST['id_agency'];
         $agency = $this->Agency_model->getMarketingNonaktif($id_agency);
         echo json_encode($agency);

@@ -80,16 +80,13 @@
                 $("#no_wa").val(data.no_wa);
                 $("#tgl_masuk").val(data.tgl_masuk);
                 $("#alamat").val(data.alamat);
-                $("#rt").val(data.rt);
-                $("#rw").val(data.rw);
-                $("#kel").val(data.kel);
-                $("#kec").val(data.kec);
-                $("#kab_kota").val(data.kab_kota);
                 $("#no_rek").val(data.no_rek);
                 $("#nama_bank").val(data.nama_bank);
                 $("#an_rek").val(data.an_rek);
+                $("#cabang_bank").val(data.cabang_bank);
                 $("#npwp").val(data.no_npwp);
                 $("#kd_marketing").val(data.kd_marketing);
+                $("#table").val("marketing_si");
             }
         })
     })

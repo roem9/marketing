@@ -18,10 +18,13 @@
                                 <a href="#" class='nav-link' id="btn-form-2" data-id=""><i class="fas fa-user"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class='nav-link' id="btn-form-3" data-id=""><i class="fas fa-user-check"></i></a>
+                                <a href="#" class='nav-link' id="btn-form-3" data-id=""><i class="fas fa-dollar-sign"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class='nav-link' id="btn-form-4" data-id=""><i class="fas fa-user-slash"></i></a>
+                                <a href="#" class='nav-link' id="btn-form-4" data-id=""><i class="fas fa-user-check"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class='nav-link' id="btn-form-5" data-id=""><i class="fas fa-user-slash"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -36,8 +39,8 @@
                                 <input class='form-control form-control-sm' type="text" name="link_marketing" id="link_marketing" autocomplete="off" autocorrect="off" autocapitalize="off" readonly>
                             </div>
                         </div>
-                        <div class="form-detail" id="form-2">
-                            <form action="<?= base_url()?>agency/editagency" method="post">
+                        <form action="<?= base_url()?>agency/editagency" method="post">
+                            <div class="form-detail" id="form-2">
                                 <div class="form-group" id="statusAgency">
                                     <label for="status">Status</label>
                                     <select name="status" id="status" class="form-control form-control-sm" required>
@@ -76,6 +79,11 @@
                                     <label for="tgl_masuk">Tgl Akad</label>
                                     <input class='form-control form-control-sm' type="date" name="tgl_masuk" id="tgl_masuk" readonly>
                                 </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-success btn-sm" id="btn-next-2"><i class="fa fa-arrow-right"></i> Data Rekening</button>
+                                </div>
+                            </div>
+                            <div class="form-detail" id="form-3">
                                 <div class="form-group">
                                     <label for="no_rek">No. Rekening</label>
                                     <input class='form-control form-control-sm' type="text" name="no_rek" id="no_rek" autocomplete="off" autocorrect="off" autocapitalize="off">
@@ -93,16 +101,16 @@
                                     <input class='form-control form-control-sm' type="text" name="npwp" id="npwp" autocomplete="off" autocorrect="off" autocapitalize="off">
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm btn-block" id="simpanAgency">Update</button>
-                            </form>
-                        </div>
-                        <div class="form-detail fo-14" id="form-3">
+                            </div>
+                        </form>
+                        <div class="form-detail fo-14" id="form-4">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-primary">Marketing Aktif <span class="badge badge-warning" id="jumlah-marketing-aktif"></span></li>
                                 <li class="list-group-item" id="pesan-aktif"><i class="fa fa-exclamation-circle text-warning"></i> Tidak ada marketing</li>
                                 <div id="list-marketing-aktif"></div>
                             </ul>
                         </div>
-                        <div class="form-detail fo-14" id="form-4">
+                        <div class="form-detail fo-14" id="form-5">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-danger">Marketing Nonaktif <span class="badge badge-warning" id="jumlah-marketing-nonaktif"></span></li>
                                 <li class="list-group-item" id="pesan-nonaktif"><i class="fa fa-exclamation-circle text-warning"></i> Tidak ada marketing</li>

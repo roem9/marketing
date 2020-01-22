@@ -41,11 +41,6 @@
                 <li class="nav-item">
                   <a href="<?= base_url()?>agency/batch/5" class="nav-link <?php if($batch == '5') echo 'active'?>">Batch 5</a>
                 </li>
-                <?php if($level != 'keuangan') :?>
-                  <li class="nav-item">
-                    <a href="<?= base_url()?>agency/konfirmasi" class="nav-link <?php if($batch == '6')echo 'active'?>">Konfirmasi</a>
-                  </li>
-                <?php endif;?>
                 <!-- <a href="#" data-toggle="modal" data-target="#modal_add_agency" class="nav-link btn btn-success btn-sm">Tambah Agency</a> -->
               </ul>
             </div>
@@ -108,7 +103,6 @@
       $("#form-2").hide();
       $("#form-3").hide();
       $("#form-4").hide();
-      $("#form-5").hide();
 
 
       $(".modalAgency").click(function(){
@@ -196,13 +190,11 @@
         $("#btn-form-2").removeClass("active")
         $("#btn-form-3").removeClass("active")
         $("#btn-form-4").removeClass("active")
-        $("#btn-form-5").removeClass("active")
 
         $("#form-1").show();
         $("#form-2").hide();
         $("#form-3").hide();
         $("#form-4").hide();
-        $("#form-5").hide();
       })
     
       $("#btn-form-2").click(function(){
@@ -210,13 +202,11 @@
           $("#btn-form-2").addClass("active")
           $("#btn-form-3").removeClass("active")
           $("#btn-form-4").removeClass("active")
-          $("#btn-form-5").removeClass("active")
 
           $("#form-1").hide();
           $("#form-2").show();
           $("#form-3").hide();
           $("#form-4").hide();
-          $("#form-5").hide();
       })
       
       $("#btn-form-3").click(function(){
@@ -224,13 +214,11 @@
           $("#btn-form-2").removeClass("active")
           $("#btn-form-3").addClass("active")
           $("#btn-form-4").removeClass("active")
-          $("#btn-form-5").removeClass("active")
 
           $("#form-1").hide();
           $("#form-2").hide();
           $("#form-3").show();
           $("#form-4").hide();
-          $("#form-5").hide();
       })
       
       $("#btn-form-4").click(function(){
@@ -238,42 +226,12 @@
           $("#btn-form-2").removeClass("active")
           $("#btn-form-3").removeClass("active")
           $("#btn-form-4").addClass("active")
-          $("#btn-form-5").removeClass("active")
 
           $("#form-1").hide();
           $("#form-2").hide();
           $("#form-3").hide();
           $("#form-4").show();
-          $("#form-5").hide();
       })  
-
-      $("#btn-form-5").click(function(){
-          $("#btn-form-1").removeClass("active")
-          $("#btn-form-2").removeClass("active")
-          $("#btn-form-3").removeClass("active")
-          $("#btn-form-4").removeClass("active")
-          $("#btn-form-5").addClass("active")
-
-          $("#form-1").hide();
-          $("#form-2").hide();
-          $("#form-3").hide();
-          $("#form-4").hide();
-          $("#form-5").show();
-      })
-
-      $("#btn-next-2").click(function(){
-          $("#btn-form-1").removeClass("active")
-          $("#btn-form-2").removeClass("active")
-          $("#btn-form-3").addClass("active")
-          $("#btn-form-4").removeClass("active")
-          $("#btn-form-5").removeClass("active")
-
-          $("#form-1").hide();
-          $("#form-2").hide();
-          $("#form-3").show();
-          $("#form-4").hide();
-          $("#form-5").hide();
-      })
 
       $("#simpanAgency").click(function(){
         var c = confirm("Yakin akan mengubah data agency?")
